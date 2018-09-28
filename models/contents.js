@@ -24,6 +24,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: true,
       defaultValue: '0'
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: true
     }
   }, {
   	timestamps: false
