@@ -1,0 +1,52 @@
+swagger: "2.0"
+info:
+  version: "prototype"
+  title: Yaboja Server
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /api/v1/get_contents:
+    # binds a127 app logic to a route
+    get:
+      description: Returns all data
+      # used as the method name of the controller
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Response"
+        # responses may fall through to errors
+# complex objects have schema definitions
+definitions:
+  Response:
+    required:
+      - idx
+      - title
+      - content
+      - cnt
+      - createAt
+    properties:
+      idx:
+        type: integer
+      title:
+        type: string
+      content:
+        type: string
+      cnt:
+        type: integer
+      createAt:
+        type: string
