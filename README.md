@@ -6,6 +6,8 @@
 
 ## Install
 ```bash
+git clone https://github.com/team-asdf/yaboja-server
+cd yaboja-server
 npm install
 mysqldump -u root -p yaboja > sql/yaboja.sql
 cp config/_config.json config/config.json #Setting mysql db, table, password
