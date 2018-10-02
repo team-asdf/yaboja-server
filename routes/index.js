@@ -4,6 +4,7 @@ var models = require('../models/');
 var router = express.Router();
 
 router.get('/api/v1/get_contents', function(req, res) {
+	res.header("Access-Control-Allow-Origin", "*");
 	models.contents.findAll().then(full => res.json(full))
 });
 
