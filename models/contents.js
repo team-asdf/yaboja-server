@@ -25,6 +25,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       defaultValue: '0'
     },
+	source: {
+	  type: DataTypes.TEXT,
+	  allowNull:true
+	},
     createdAt: {
       type: DataTypes.DATE,
       allowNull: true
