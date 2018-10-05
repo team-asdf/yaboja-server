@@ -27,7 +27,11 @@ module.exports = function(sequelize, DataTypes) {
     },
 	source: {
 	  type: DataTypes.TEXT,
-	  allowNull:true
+	  allowNull: true
+	},
+	keyword: {
+	  type: DataTypes.TEXT,
+	  allowNull: true
 	},
     createdAt: {
       type: DataTypes.DATE,
