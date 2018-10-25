@@ -20,6 +20,7 @@ router.post('/api/v1/find', function(req, res) {
 router.get('/api/v1/get_lang', function(req,res) {
 	res.header("Access-Control-Allow-Origin", "*");
     models.langlist.findAll().then(lang => res.json(lang))
+});
 
 router.post('/api/v1/usercheck', function(req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
