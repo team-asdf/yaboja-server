@@ -11,6 +11,10 @@ module.exports = function(sequelize, DataTypes) {
     name: {
       type: DataTypes.TEXT,
       allowNull: true
+    },
+    popular: {
+      type: DataTypes.STRING(5),
+      allowNull: true
     }
   }, {
   	timestamps: false
