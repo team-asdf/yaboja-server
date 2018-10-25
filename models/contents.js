@@ -22,23 +22,22 @@ module.exports = function(sequelize, DataTypes) {
     },
     cnt: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
-      defaultValue: '0'
+      allowNull: true
     },
-	source: {
-	  type: DataTypes.TEXT,
-	  allowNull: true
-	},
-	keyword: {
-	  type: DataTypes.TEXT,
-	  allowNull: true
-	},
-	image: {
-	  type: DataTypes.TEXT,
-	  allowNull: true
-	},
+    source: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    keyword: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    image: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
     createdAt: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: true
     }
   }, {
