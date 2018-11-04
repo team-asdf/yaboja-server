@@ -42,4 +42,10 @@ router.post('/api/v1/usercheck', function(req, res) {
 	});
 });
 
+router.get('api/v1/get_contents/headline', function(req, res) {
+	res.header("Access-Control-Allow-Origin", "*");
+    // models.header.findAll().then(full => res.json(full)) => header 고정될 기사 불러오기
+	// models.contents.findAll().then(full => res.json(full)) => contents 기사 불러오기
+});
+
 module.exports = router;
