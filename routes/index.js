@@ -4,9 +4,21 @@ var models = require('../models/');
 var router = express.Router();
 const request = require('request');
 
-router.get('/api/v1/get_contents', function(req, res) {
+router.get('/api/v1/get_contents/:page', function(req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
-	models.contents.findAll().then(full => res.json(full))
+	let limit = 5;
+	let offset = 0;
+	models.contents.findAndCountAll()
+	.then((data) => {
+		let page = req.params.page;
+		let pages = Math.ceil(data.count / limit);
+			offset = limit * (page - 1);
+	models.contents.findAll({
+		limit: limit,
+		offset: offset,
+		$sort: {id : 1}
+	}).then(full => res.json(full))
+});
 });
 
 router.post('/api/v1/find', function(req, res) {
