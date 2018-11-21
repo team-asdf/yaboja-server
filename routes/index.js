@@ -54,4 +54,17 @@ router.post('/api/v1/usercheck', function(req, res) {
 	});
 });
 
+/*router.post('/api/v1/write_userinfo', function(req, res) {
+	res.header("Access-Control-Allow-Origin", "*");
+	var u = req.body.userid;
+	var el = req.body.extract_language;
+	var il = req.body.interested_language;
+	models.user.create({
+		userid: u,
+		extract_language: el,
+		interested_language: il
+	}).then(function(insertedUser){
+	console.log(insertedUser);})
+});*/
+
 module.exports = router;
