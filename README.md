@@ -14,14 +14,6 @@ cp config/_config.json config/config.json #Setting mysql db, table, password
 npm start
 ```
 
-
-## Example
-```bash
-curl localhost:3000/api/v1/get_contents
-[{"idx":1,"title":"제목","content":"내용","url":"http://google.com/","cnt":0,"createdAt":"2018-09-20"}]
-```
-
-
 ## License
 
 <img align="right" src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png">
