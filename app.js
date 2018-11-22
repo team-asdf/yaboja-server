@@ -15,7 +15,12 @@ var logger = require('morgan');
 var sequelize = require('sequelize');
 var mysql = require('mysql2');
 
-var indexRouter = require('./routes/index');
+var checker = require('./routes/api/v1/checker');
+var contents = require('./routes/api/v1/contents');
+var finder = require('./routes/api/v1/finder');
+var languages = require('./routes/api/v1/languages');
+var signup = require('./routes/api/v1/signup');
+var updater = require('./routes/api/v1/updater');
 
 var app = express();
 
@@ -27,6 +32,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/', indexRouter);
+app.use('/api/v1/checker', checker);
+app.use('/api/v1/contents', contents);
+app.use('/api/v1/finder', finder);
+app.use('/api/v1/updater', updater);
+app.use('/api/v1/signup', signup);
+app.use('/api/v1/updater', updater);
+
 
 module.exports = app;
