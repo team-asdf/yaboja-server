@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user', {
+  return sequelize.define('users', {
     idx: {
       type: DataTypes.INTEGER(11).UNSIGNED,
       allowNull: false,
@@ -16,13 +16,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: true
     },
-    interested_language: {
+      keyword: {
       type: DataTypes.TEXT,
       allowNull: true
     },
   }, {
   	timestamps: false
   }, {
-    tableName: 'user'
+    tableName: 'users'
   });
 };
