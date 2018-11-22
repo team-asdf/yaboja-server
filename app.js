@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 app.use('/api/v1/checker', checker);
 app.use('/api/v1/contents', contents);
 app.use('/api/v1/finder', finder);
-app.use('/api/v1/updater', updater);
+app.use('/api/v1/languages', languages);
 app.use('/api/v1/signup', signup);
 app.use('/api/v1/updater', updater);
 
