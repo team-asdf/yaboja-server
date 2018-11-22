@@ -5,22 +5,7 @@
 </p>
 
 ## Install
-```bash
-git clone https://github.com/team-asdf/yaboja-server
-cd yaboja-server
-npm install
-mysql -u root -p yaboja < sql/yaboja.sql
-cp config/_config.json config/config.json #Setting mysql db, table, password
-npm start
-```
-
-
-## Example
-```bash
-curl localhost:3000/api/v1/get_contents
-[{"idx":1,"title":"제목","content":"내용","url":"http://google.com/","cnt":0,"createdAt":"2018-09-20"}]
-```
-
+> Writing...
 
 ## License
 
