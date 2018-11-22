@@ -4,7 +4,7 @@ var models = require('../../../models/');
 var router = express.Router();
 const request = require('request');
 
-router.post('/api/v1/find', function(req, res) {
+router.post('/', function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     var search = req.body.search;
     models.contents.findAll({

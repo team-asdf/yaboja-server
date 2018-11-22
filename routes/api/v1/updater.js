@@ -4,12 +4,7 @@ var models = require('../../../models/');
 var router = express.Router();
 const request = require('request');
 
-router.get('/', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.json({'test': true});
-});
-
-router.post('/:idx', function(req, res) {
+router.get('/:idx', function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     models.contents.update({
         cnt: Sequelize.literal("cnt + 1")}, {
