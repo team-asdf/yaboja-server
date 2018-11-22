@@ -9,7 +9,7 @@ router.post('/', function(req, res) {
     models.user.create({
         userid: req.body.userid,
         extract_language: req.body.extract_language,
-        interested_language: req.body.interested_language
+        keyword: req.body.keyword
     }).then(result => res.json({"check": true}))
 });
 
