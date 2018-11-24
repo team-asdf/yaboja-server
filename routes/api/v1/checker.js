@@ -11,15 +11,20 @@ router.post('/', function(req, res) {
     var options = {
         url: 'https://api.github.com/users/' + userid,
         headers: {
-            'User-Agent': 'yaboja'
-        }
+            'User-Agent': 'yaboja',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
     };
 
     request(options, function (error, response, body) {
         if (response.statusCode == 200) {
-            res.json({'check': true});
+            var result = JSON.parse(body);
+            result.check = true;
+            res.send(result);
         } else {
-            res.json({'check': false});
+            var result = JSON.parse(body);
+            result.check = false;
+            res.send(result);
         }
     });
 });
