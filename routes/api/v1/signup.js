@@ -10,7 +10,11 @@ router.post('/', function(req, res) {
         userid: req.body.userid,
         extract_language: req.body.extract_language,
         keyword: req.body.keyword
-    }).then(result => res.json({"check": true}))
+    }).then(function(result) {
+        res.json({"check": true});
+    }).then(function(err) {
+        res.json({"check": false});
+    });
 });
 
 router.post('/:userid', function(req, res) {
