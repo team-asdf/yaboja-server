@@ -4,6 +4,45 @@ var models = require('../../../models/');
 var router = express.Router();
 const request = require('request');
 
+router.get("/archives/:username/:page", function(req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    let limit = 5;
+    let offset = 0;
+    models.archives.findAll({
+        where: {userid: req.params.username},
+        raw: true,
+        attributes: ['content_idx'],
+    }).then(function (result) {
+        var queries = [];
+        var idxer_arr = [];
+        for (i = 0; i < result.length; i++)
+        {
+            idxer_arr.push(result[i].content_idx)
+        }
+        models.contents.findAndCountAll()
+            .then((data) => {
+                let page = req.params.page;
+                let pages = Math.ceil(data.count / limit);
+                offset = limit * (page - 1);
+                for (i = 0; i < idxer_arr.length; i++) {
+                    queries.push({idx: idxer_arr[i]});
+                }
+                models.contents.findAll({
+                    limit: limit,
+                    offset: offset,
+                    $sort: {id : 1},
+                    where: {
+                        $or : queries
+                    },
+                    raw: true
+                }).then(results => {
+                    res.json(results);
+                })
+            });
+
+    });
+});
+
 router.get('/:page', function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     let limit = 5;
@@ -16,8 +55,11 @@ router.get('/:page', function(req, res) {
             models.contents.findAll({
                 limit: limit,
                 offset: offset,
-                $sort: {id : 1}
-            }).then(full => res.json(full))
+                $sort: {id : 1},
+                attributes: ['idx', 'title', 'content', 'url', 'cnt', 'source', 'keyword', 'image', 'createdAt']
+            }).then(function(result) {
+                res.json(result)
+            });
         });
 });
 
