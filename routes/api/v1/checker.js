@@ -1,14 +1,13 @@
 var Sequelize = require('sequelize');
 var express = require('express');
+var cors = require('cors');
 var models = require('../../../models/');
 var router = express.Router();
 const request = require('request');
 
-router.post('/', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+router.use(cors());
 
+router.post('/', function(req, res) {
     var userid = req.body.userid;
 
     var options = {

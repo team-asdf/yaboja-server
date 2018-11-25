@@ -1,11 +1,13 @@
 var Sequelize = require('sequelize');
 var express = require('express');
+var cors = require('cors');
 var models = require('../../../models/');
 var router = express.Router();
 const request = require('request');
 
+router.use(cors());
+
 router.post('/', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
     models.users.create({
         userid: req.body.userid,
         extract_language: req.body.extract_language,
@@ -18,7 +20,6 @@ router.post('/', function(req, res) {
 });
 
 router.post('/:userid', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
     var condition = {where: {userid: req.params.userid}};
     var values = {keyword: req.body.keyword};
     models.users.update(values, condition).then(function(result) {

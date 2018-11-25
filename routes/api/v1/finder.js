@@ -1,11 +1,13 @@
 var Sequelize = require('sequelize');
 var express = require('express');
+var cors = require('cors');
 var models = require('../../../models/');
 var router = express.Router();
 const request = require('request');
 
+router.use(cors());
+
 router.post('/', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
     var search = req.body.search;
     models.contents.findAll({
         where: {title: {like: '%' + search + '%'}}

@@ -1,11 +1,13 @@
 var Sequelize = require('sequelize');
 var express = require('express');
+var cors = require('cors');
 var models = require('../../../models/');
 var router = express.Router();
 const request = require('request');
 
+router.use(cors());
+
 router.get("/archives/:username/:page", function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
     let limit = 5;
     let offset = 0;
     models.archives.findAll({
@@ -44,7 +46,6 @@ router.get("/archives/:username/:page", function(req, res) {
 });
 
 router.get('/:page', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
     let limit = 5;
     let offset = 0;
     models.contents.findAndCountAll()
@@ -64,7 +65,6 @@ router.get('/:page', function(req, res) {
 });
 
 router.get("/:username/:page", function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
     let limit = 5;
     let offset = 0;
     models.users.findAll({
