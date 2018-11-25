@@ -39,6 +39,10 @@ module.exports = function(sequelize, DataTypes) {
     createdAt: {
       type: DataTypes.DATEONLY,
       allowNull: true
+    },
+    priority: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
   	timestamps: false
