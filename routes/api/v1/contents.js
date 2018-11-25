@@ -7,6 +7,15 @@ const request = require('request');
 
 router.use(cors());
 
+router.get("/keyword/:username", function(req, res) {
+    models.users.findAll({
+        where: {userid: req.params.username},
+        attributes: ["extract_language", "keyword"]
+    }).then(function(result) {
+        res.json(result);
+    })
+});
+
 router.get("/archives/:username/:page", function(req, res) {
     let limit = 5;
     let offset = 0;
