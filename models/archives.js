@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     return sequelize.define('archives', {
         idx: {
             type: DataTypes.INTEGER(11).UNSIGNED,
-            allowNull: false,
+            allowNull: true,
             primaryKey: true,
             autoIncrement: true
         },
@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        cd : {
+        content_idx : {
             type: DataTypes.INTEGER,
             allowNull: false
         }
