@@ -8,14 +8,21 @@ const request = require('request');
 router.use(cors());
 
 router.post('/', function(req, res) {
-    models.users.create({
-        userid: req.body.userid,
-        extract_language: req.body.extract_language,
-        keyword: req.body.keyword
+    models.users.count({
+        where: {userid: req.body.userid},
+        raw: true
     }).then(function(result) {
-        res.json({"check": true});
-    }).then(function(err) {
-        res.json({"check": false});
+        if (result == 0) {
+            models.users.create({
+                userid: req.body.userid,
+                extract_language: req.body.extract_language,
+                keyword: req.body.keyword
+            }).then(function(result) {
+                res.json({"check": true});
+            })
+        } else if (result >= 1) {
+            res.json({"check": false});
+        }
     });
 });
 
