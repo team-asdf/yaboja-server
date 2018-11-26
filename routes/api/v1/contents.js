@@ -10,15 +10,14 @@ router.use(cors());
 router.get("/keyword/:username", function(req, res) {
     models.users.findAll({
         where: {userid: req.params.username},
-        attributes: ["extract_language", "keyword"]
+        attributes: ["extract_language", "keyword"],
+		raw: true
     }).then(function(result) {
         res.json(result);
     })
 });
 
-router.get("/archives/:username/:page", function(req, res) {
-    let limit = 5;
-    let offset = 0;
+router.get("/archives/:username", function(req, res) {
     models.archives.findAll({
         where: {userid: req.params.username},
         raw: true,
@@ -30,27 +29,17 @@ router.get("/archives/:username/:page", function(req, res) {
         {
             idxer_arr.push(result[i].content_idx)
         }
-        models.contents.findAndCountAll()
-            .then((data) => {
-                let page = req.params.page;
-                let pages = Math.ceil(data.count / limit);
-                offset = limit * (page - 1);
-                for (i = 0; i < idxer_arr.length; i++) {
-                    queries.push({idx: idxer_arr[i]});
-                }
-                models.contents.findAll({
-                    limit: limit,
-                    offset: offset,
-                    $sort: {id : 1},
-                    where: {
-                        $or : queries
-                    },
-                    raw: true
-                }).then(results => {
-                    res.json(results);
-                })
-            });
-
+        for (i = 0; i < idxer_arr.length; i++) {
+            queries.push({idx: idxer_arr[i]});
+        }
+        models.contents.findAll({
+            where: {
+                $or : queries
+            },
+            raw: true
+		}).then(results => {
+			res.json(results);
+		})
     });
 });
 
