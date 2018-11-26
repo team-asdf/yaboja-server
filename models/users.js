@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
       keyword: {
       type: DataTypes.TEXT,
       allowNull: true
-    },
+    }
   }, {
   	timestamps: false
   }, {
