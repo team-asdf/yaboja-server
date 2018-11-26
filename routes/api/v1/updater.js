@@ -12,7 +12,7 @@ router.post('/:idx', function(req, res) {
         cnt: Sequelize.literal("cnt + 1")}, {
         where: {idx: req.params.idx}
     }).then(function(result) {
-        models.archive.create({
+        models.archives.create({
             userid: req.body.userid,
             content_idx: req.params.idx
         }).then(function(result) {
