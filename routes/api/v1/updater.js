@@ -21,4 +21,14 @@ router.post('/:idx', function(req, res) {
     });
 });
 
+router.post('/:username/:idx', function(req, res) {
+    models.archives.destroy({
+        where: {userid: req.params.username, content_idx: req.params.idx}
+    }).then(function(result) {
+        res.json({"check": true});
+    }).catch(function(err) {
+        res.json({"check": false});
+    });
+});
+
 module.exports = router;
