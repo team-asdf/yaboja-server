@@ -21,6 +21,7 @@ var finder = require('./routes/api/v1/finder');
 var languages = require('./routes/api/v1/languages');
 var signup = require('./routes/api/v1/signup');
 var updater = require('./routes/api/v1/updater');
+var opensources = require('./routes/api/v1/opensources');
 
 var app = express();
 
@@ -38,6 +39,6 @@ app.use('/api/v1/finder', finder);
 app.use('/api/v1/languages', languages);
 app.use('/api/v1/signup', signup);
 app.use('/api/v1/updater', updater);
-
+app.use('/api/v1/opensources', opensources);
 
 module.exports = app;
