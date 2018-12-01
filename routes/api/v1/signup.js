@@ -1,17 +1,33 @@
 var Sequelize = require('sequelize');
 var express = require('express');
 var cors = require('cors');
+let {PythonShell} = require('python-shell')
 var models = require('../../../models/');
 var router = express.Router();
 const request = require('request');
 
 router.use(cors());
 
+router.post('/newuser', function(req, res) {
+    let options = {
+        mode: 'text',
+        pythonPath: '',
+        pythonOptions: ['-u'],
+        scriptPath: '/Users/keyakoto/Workspace/dev/yaboja-server/routes/api/v1/',
+        args: [req.body.userid]
+    };
+
+    PythonShell.run('./get_info.py', options, function (err, results) {
+        if (err) throw err;
+        res.json({"check": true});
+    });
+});
+
 router.post('/', function(req, res) {
     models.users.count({
         where: {userid: req.body.userid},
         raw: true
-    }).then(function(result) {
+    }).then(fungitction(result) {
         if (result == 0) {
             models.users.create({
                 userid: req.body.userid,
