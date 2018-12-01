@@ -27,7 +27,7 @@ router.post('/', function(req, res) {
     models.users.count({
         where: {userid: req.body.userid},
         raw: true
-    }).then(fungitction(result) {
+    }).then(function(result) {
         if (result == 0) {
             models.users.create({
                 userid: req.body.userid,
